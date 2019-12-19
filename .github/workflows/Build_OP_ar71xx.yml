@@ -5,21 +5,21 @@
 # Youtube Channel: https://goo.gl/fvkdwm 
 #=================================================
 
-name: Build_ar71xx
+name: Build_ar7xx
 
 on: 
   release:
     types: [published]
 
-  #push:
-  #  branches: 
-  #    - master
+  push:
+    branches: 
+      - master
 
   #schedule:
   #  - cron: 0 8 * * 5
 
-  watch:
-    types: [started]
+#  watch:
+#   types: [started]
 
 jobs:
   build:
@@ -70,9 +70,9 @@ jobs:
         ./scripts/feeds install -a
         ./scripts/feeds install -a
 
-    - name: Configuration Customization - Build_ar71xx
+    - name: Configuration Customization - Build_ar7xx
       env:
-        CONFIG_FILE: 'ar71xx.config'
+        CONFIG_FILE: 'ar7xx.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
